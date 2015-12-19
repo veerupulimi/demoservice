@@ -123,7 +123,14 @@ public class CartDBI {
 			
 	}
 	
-	
+	/**
+	 * To get the order details by providing the customer ID as 
+	 * input to this function 
+	 * @param lUserId
+	 * @param con
+	 * @return
+	 * @throws Exception
+	 */
 	public JSONArray getOrderDetails(long lUserId, Connection con) throws Exception {
 		
 		StringBuilder sbQry = new StringBuilder();
@@ -171,67 +178,15 @@ public class CartDBI {
 		
 	}
 	
-	public JSONArray getProducts(Connection con) throws Exception {
-		
-		StringBuilder sbQry = new StringBuilder();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		JSONArray jaProducts = new JSONArray();
-		JSONObject joProduct = null;
-		
-		try {
-			sbQry.append("select * from products");
-			pstmt = con.prepareStatement(sbQry.toString());
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				joProduct = new JSONObject();
-				joProduct.put("counter_id", rs.getString("counter_id"));
-				joProduct.put("query", rs.getString("query_string"));
-				joProduct.put("executiontype", rs.getString("execution_type"));
-				joProduct.put("isdelta", rs.getBoolean("is_delta"));
-				joProduct.put("isTopProcess", rs.getBoolean("is_top_process"));
-				
-				jaProducts.add(joProduct);
-				
-				joProduct = null;
-			}
-		} catch(Exception ex) {			
-			LogManager.errorLog(ex);
-		} finally {
-			
-			DataBaseManager.close(pstmt);
-			pstmt = null;
-			
-			DataBaseManager.close(rs);
-			rs = null;
-			
-			UtilsFactory.clearCollectionHieracy(sbQry);
-		}
-		
-		return jaProducts;
-		
-		
-		
-	}
-	
-	public JSONObject getProduct(Connection con) throws Exception {
-		JSONObject joProduct = null;
-		try {
-			joProduct = new JSONObject();
-			
-			joProduct.put("x", "y");
-			joProduct.put("x", "y");
-			joProduct.put("x", "y");
-			joProduct.put("x", "y");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return joProduct;
-	}
-	
-	
+	/**
+	 * To add the selected products to the cart
+	 * @param con
+	 * @param lUserId
+	 * @param lProductId
+	 * @param nQuantity
+	 * @return
+	 * @throws Exception
+	 */
 	public JSONObject addProductToCart(Connection con, long lUserId, long lProductId, int nQuantity) throws Exception {
 		StringBuilder sbQry = new StringBuilder();
 		PreparedStatement pstmt = null;
@@ -294,7 +249,13 @@ public class CartDBI {
 		return joRtn;
 	}
 	
-	
+	/**
+	 * To purchase the product in cart 
+	 * @param con
+	 * @param lUserId
+	 * @return
+	 * @throws Exception
+	 */
 	public JSONObject productPurchase(Connection con, long lUserId) throws Exception {
 		StringBuilder sbQry = new StringBuilder();
 		PreparedStatement pstmt = null;
@@ -371,7 +332,13 @@ public class CartDBI {
 		
 		return joReturn;
 	}
-	
+	/**
+	 * To reduce the quantity
+	 * @param con
+	 * @param lProductId
+	 * @param nQuantity
+	 * @throws Exception
+	 */
 	public void decreaseQuantity(Connection con, long lProductId, int nQuantity) throws Exception {
 		StringBuilder sbQry = new StringBuilder();
 		PreparedStatement pstmt = null;

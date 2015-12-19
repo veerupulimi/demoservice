@@ -6,7 +6,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.appedo.manager.LogManager;
@@ -31,32 +30,6 @@ public class ProductService {
 		}
 		return joRtn.toString();
 	}
-	
-	
-	
-	@GET
-	@Path("/getproducts")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getProducts() {
-		ResourceManager resourceManager = null;
-		JSONObject joProducts  = null;
-		JSONArray jaProducts = null;
-		try {
-			resourceManager = ResourceManager.getCollectorManager();
-			
-			jaProducts = resourceManager.getProducts();
-			
-			joProducts = new JSONObject();
-			
-			joProducts.put("productlist", jaProducts);
-			
-		} catch (Exception e) {
-			LogManager.errorLog(e);
-		}
-		return joProducts.toString();
-	}
-
-
 	
 
 }

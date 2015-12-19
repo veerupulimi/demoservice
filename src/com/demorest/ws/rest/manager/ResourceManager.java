@@ -49,7 +49,11 @@ public class ResourceManager{
 		return collectorManager;
 	}
 	
-	
+	/**
+	 * To authenticate login user
+	 * @param encodedUserPassword
+	 * @return
+	 */
 	public JSONObject userAuthentication(String encodedUserPassword) {
 		CartDBI cartDBI  = null;
 		String usernameAndPassword = null;
@@ -72,34 +76,11 @@ public class ResourceManager{
 		return joCredentials;
 		
 	}
-	
-	
-	public JSONObject getCatagories() {
-		JSONObject joCatagories = null;
-		CartDBI cartDBI  = null;
-		try{
-			cartDBI  = new CartDBI();
-			//joCatagories  = cartDBI.getCatagories(con);
-			
-		} catch(Exception ex) {
-			LogManager.errorLog(ex);
-		}
-		return joCatagories;
-	}
-	
-	public JSONArray getProducts() {
-		JSONArray jaProducts = null;
-		CartDBI cartDBI  = null;
-		try{
-			cartDBI  = new CartDBI();
-			jaProducts  = cartDBI.getProducts(con);
-			
-		} catch(Exception ex) {
-			LogManager.errorLog(ex);
-		}
-		return jaProducts;
-	}
-	
+	/**
+	 * To get the details about orders
+	 * @param lUserId
+	 * @return
+	 */
 	public JSONArray getOrderDetails(long lUserId) {
 		JSONArray jaProducts = null;
 		CartDBI cartDBI  = null;
@@ -112,7 +93,14 @@ public class ResourceManager{
 		}
 		return jaProducts;
 	}
-	
+	/**
+	 * To add products to cart
+	 * @param lUserId
+	 * @param lProductId
+	 * @param nQuantity
+	 * @return
+	 * @throws Exception
+	 */
 	
 	public JSONObject addProductToCart(long lUserId, long lProductId, int nQuantity) throws Exception {
 		CartDBI cartDBI = null;
@@ -127,7 +115,12 @@ public class ResourceManager{
 		return joRtn;
 	}
 	
-	
+	/**
+	 * To get the history of purchase orders
+	 * @param lUserId
+	 * @return
+	 * @throws Exception
+	 */
 	public JSONObject getPurchaseHistory(long lUserId) throws Exception {
 		CartDBI cartDBI = null;
 		JSONObject joPurchaseHistory = null;
@@ -140,7 +133,12 @@ public class ResourceManager{
 		}
 		return joPurchaseHistory;
 	}
-	
+	/**
+	 * To purchase the orders
+	 * @param lUserId
+	 * @return
+	 * @throws Exception
+	 */
 	public JSONObject productPurchase(long lUserId) throws Exception {
 		CartDBI cartDBI = null;
 		JSONObject joInvoice = null;
