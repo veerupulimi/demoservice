@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Random;
 
-import com.appedo.manager.LogManager;
+import com.demorest.ws.rest.manager.LogManager;
 import com.demorest.ws.rest.connect.DataBaseManager;
 import com.demorest.ws.rest.util.UtilsFactory;
 

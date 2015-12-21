@@ -21,7 +21,7 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 import org.postgresql.PGConnection;
 import org.postgresql.copy.CopyManager;
 
-import com.appedo.manager.LogManager;
+import com.demorest.ws.rest.manager.LogManager;
 
 /**
  * Manager for the DataBase connections with a connection-pooling.

@@ -6,8 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import net.sf.json.JSONObject;
-
-import com.appedo.manager.LogManager;
+import com.demorest.ws.rest.manager.LogManager;
 import com.demorest.ws.rest.manager.ResourceManager;
 
 @Path("/user")

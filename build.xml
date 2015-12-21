@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<project name="sample_application" default="package">
+		<path id="libpath">
+             <fileset dir="WebRoot/WEB-INF/lib">
+                <include name="**/*.jar"/>
+             </fileset>
+        </path> 
+		<target name="init">
+			<property name="src_dir" value="src/com/demorest/ws/rest"/>
+			<property name="classes" value="temp/classes"/>
+			<property name="wars" value="temp/wars"/>
+			<property name="web.xml" value="WebRoot/WEB-INF/web.xml"/>
+		</target>        
+		<target name="clean" depends="init">
+            <delete dir="temp"/>
+        </target>
+		<target name="prepare" depends="clean">
+	             <mkdir dir="${classes}"/>
+		     <mkdir dir="${wars}"/>
+		</target>
+        <target name="compile" depends="prepare">
+            <javac destdir="${classes}" debug="true" srcdir="src/" debuglevel="lines,vars,source" includeantruntime="false">
+            	  
+                 <classpath refid="libpath"/>
+            </javac>
+        </target>		
+        <target name="package" depends="compile">
+        	<copy file="${src_dir}/resource/config.properties" todir="${classes}/src/com/demorest/ws/rest/resource"/>
+			<copy file="${src_dir}/resource/log4j.properties" todir="${classes}/src/com/demorest/ws/rest/resource"/>
+        	
+        		<war destfile="${wars}/demo.war" webxml="${web.xml}">
+                        <fileset dir="WebRoot"/>
+                        <classes dir="${classes}"/>
+                </war>
+				<copy file="${wars}/demo.war" todir="/opt/artifacts"/>
+        </target>
+</project>

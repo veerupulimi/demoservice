@@ -4,6 +4,20 @@
   <welcome-file-list>
     <welcome-file>index.htm</welcome-file>
   </welcome-file-list>
+  
+  	<context-param>
+		<description>Config file properties</description>
+		<param-name>CONFIG_PROPERTIES_FILE_PATH</param-name>
+		<param-value>/WEB-INF/classes/com/demorest/ws/rest/resource/config.properties</param-value>
+	</context-param>
+	
+	<context-param>
+		<description>log4j file properties</description>
+		<param-name>LOG4J_PROPERTIES_FILE_PATH</param-name>
+		<param-value>/WEB-INF/classes/com/demorest/ws/rest/resource/log4j.properties</param-value>
+	</context-param>
+  
+  
   <servlet>
     <servlet-name>RESTful Jersey Hello World Service</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -17,12 +31,20 @@
     <servlet-name>RESTful Jersey Hello World Service</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
-<!--   <filter> -->
-<!--     <filter-name>AuthenticationFilter</filter-name> -->
-<!--     <filter-class>com.demorest.ws.rest.jersey.RestAuthenticationFilter</filter-class> -->
-<!--   </filter> -->
-<!--   <filter-mapping> -->
-<!--     <filter-name>AuthenticationFilter</filter-name> -->
-<!--     <url-pattern>/rest/*</url-pattern> -->
-<!--   </filter-mapping> -->
+   
+  <filter>
+    <filter-name>AuthenticationFilter</filter-name>
+    <filter-class>com.demorest.ws.rest.service.AuthenticationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthenticationFilter</filter-name>
+    <url-pattern>/rest/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Init servlet for context parameters initialization -->
+	<servlet>
+		<servlet-name>InitServlet</servlet-name>
+		<servlet-class>com.demorest.ws.rest.servlet.InitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 </web-app>

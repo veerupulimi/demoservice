@@ -12,8 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.TimeZone;
-
-import com.appedo.manager.LogManager;
+import com.demorest.ws.rest.manager.LogManager;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

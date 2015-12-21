@@ -7,8 +7,7 @@ import javax.xml.bind.DatatypeConverter;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
-import com.appedo.manager.LogManager;
+import com.demorest.ws.rest.manager.LogManager;
 import com.demorest.ws.rest.connect.DataBaseManager;
 import com.demorest.ws.rest.dbi.CartDBI;
 
